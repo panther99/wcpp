@@ -14,17 +14,17 @@ std::string File::name() const
 	return _path.substr(_path.find_last_of("/\\") + 1);
 }
 
-FileProperties File::properties() const
+bool File::exists(const std::string& path)
 {
-	return _properties;
+	return std::filesystem::exists(path);
 }
 
-void File::calculate_bytes()
+unsigned int File::bytes_count()
 {
-	_properties.bytes = std::filesystem::file_size(_path);
+	return std::filesystem::file_size(_path);
 }
 
-void File::calculate_words()
+unsigned int File::words_count()
 {
 	unsigned int word_counter = 0;
 
@@ -52,10 +52,10 @@ void File::calculate_words()
 		}
 	}
 
-	_properties.words = word_counter;
+	return word_counter;
 }
 
-void File::calculate_lines()
+unsigned int File::lines_count()
 {
 	unsigned int line_counter = 0;
 
@@ -66,10 +66,10 @@ void File::calculate_lines()
 		line_counter++;
 	}
 
-	_properties.lines = line_counter;
+	return line_counter;
 }
 
-void File::calculate_chars()
+unsigned int File::chars_count()
 {
 	unsigned int char_counter = 0;
 
@@ -80,5 +80,5 @@ void File::calculate_chars()
 		char_counter += line.length();
 	}
 
-	_properties.chars = char_counter;
+	return char_counter;
 }
