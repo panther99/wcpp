@@ -5,6 +5,7 @@ build/
 bin-int/
 x64/
 wcpp/x64/
+vcpkg_installed/
 
 # Files
 *.vcxproj
