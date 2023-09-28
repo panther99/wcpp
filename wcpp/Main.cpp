@@ -1,7 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <format>
+#include <fmt/core.h>
 #include <map>
 
 #include "args.h"
@@ -32,7 +32,7 @@ int main(int argc, char* argv[])
 
 	for (int i = 0; i < sizeof(flags); i++)
 	{
-		if (parser.found(std::format("{}", flags[i])))
+		if (parser.found(fmt::format("{}", flags[i])))
 		{
 			passed_flags.push_back((Flag)flags[i]);
 		}
@@ -94,35 +94,35 @@ int main(int argc, char* argv[])
 					case Flag::Bytes:
 					{
 						auto count = file.bytes_count();
-						output.append(std::format("{}\t", count));
+						output.append(fmt::format("{}\t", count));
 						sums[Flag::Bytes] += count;
 						break;
 					}
 					case Flag::Chars:
 					{
 						auto count = file.chars_count();
-						output.append(std::format("{}\t", count));
+						output.append(fmt::format("{}\t", count));
 						sums[Flag::Chars] += count;
 						break;
 					}
 					case Flag::Lines:
 					{
 						auto count = file.lines_count();
-						output.append(std::format("{}\t", count));
+						output.append(fmt::format("{}\t", count));
 						sums[Flag::Lines] += count;
 						break;
 					}
 					case Flag::Words:
 					{
 						auto count = file.words_count();
-						output.append(std::format("{}\t", count));
+						output.append(fmt::format("{}\t", count));
 						sums[Flag::Words] += count;
 						break;
 					}
 					}
 				}
 
-				output.append(std::format("{}\n", file.name()));
+				output.append(fmt::format("{}\n", file.name()));
 			}
 		}
 	}
@@ -131,7 +131,7 @@ int main(int argc, char* argv[])
 
 	for (Flag passed_flag : passed_flags)
 	{
-		output.append(std::format("{}\t", sums[passed_flag]));
+		output.append(fmt::format("{}\t", sums[passed_flag]));
 	}
 
 	if (parser.args.size() > 0)
