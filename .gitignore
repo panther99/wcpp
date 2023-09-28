@@ -1,6 +1,7 @@
 # Directories
 .vs/
 bin/
+build/
 bin-int/
 x64/
 wcpp/x64/
