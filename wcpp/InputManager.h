@@ -4,9 +4,11 @@
 
 class InputManager
 {
+private:
+	const bool _is_file;
+
 protected:
 	std::istream* _istream;
-	bool _is_file;
 
 public:
 	InputManager(std::ifstream* ifstream) : _istream((std::istream*) ifstream), _is_file(true) {}
